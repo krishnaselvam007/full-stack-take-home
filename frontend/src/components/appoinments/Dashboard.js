@@ -7,8 +7,8 @@ class Dashboard extends Component {
     return (
       <div className='ui container'>
         <div>AppoinmentList Management</div>
-        <AppoinmentCreate />
-        <AppoinmentList />
+        <AppoinmentCreate/>
+        <AppoinmentList/>
       </div>
     );
   }
