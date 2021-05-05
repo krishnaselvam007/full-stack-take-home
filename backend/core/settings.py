@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'availabilities.apps.AvailabilitiesConfig',
     'clinicians.apps.CliniciansConfig',
     'appointments.apps.AppointmentsConfig',
+    'patients.apps.PatientsConfig',
     'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',

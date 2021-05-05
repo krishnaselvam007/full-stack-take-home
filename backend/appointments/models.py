@@ -10,3 +10,7 @@ class Appointment(models.Model):
         'clinicians.Clinician',
         on_delete=models.CASCADE,
     )
+    patient = models.ForeignKey(
+        'patients.Patient',
+        on_delete=models.CASCADE,
+    )

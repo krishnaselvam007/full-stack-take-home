@@ -1,8 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Component } from "react";
 import "./App.css";
 import logo from "./logo.svg";
 
-import { fetchClinicians } from "./requests";
+import { fetchClinicians } from "./clinicians/requests";
+import { getAppoinments } from "../actions/appoinments";
+import Dashboard from './appoinments/Dashboard';
+import { Provider } from 'react-redux'; 
+import store from '../store';
 
 function App() {
   const [clinicians, setClinicians] = useState(null);
@@ -14,8 +18,22 @@ function App() {
 
     getClinicians();
   }, []);
-  return (
-    <div className="App">
+  const [appoinments, setAppoinments] = useState(null);
+  useEffect(() => {
+    async function getAppoinment() {
+      const appoinmentData = getAppoinments();
+      setAppoinments(appoinmentData);
+    }
+
+    getAppoinment();
+  }, []);
+  
+    return (
+      <div>
+      <Provider store={store}>
+        <Dashboard />
+      </Provider>
+      <div className="App">
       <div className="logo-wrapper">
         <img src={logo} className="logo" alt="logo" />
       </div>
@@ -35,8 +53,12 @@ function App() {
         </ul>
       </div>
       <pre className="response">{JSON.stringify(clinicians, null, 2)}</pre>
+      <pre className="response">{JSON.stringify(appoinments, null, 0)}</pre>
     </div>
-  );
+    </div>
+    );
+      
 }
+
 
 export default App;
